@@ -11,7 +11,7 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 13
+font pango:monospace 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -40,7 +40,7 @@ bindsym Mod1+Return exec urxvt
 #i3-sensible-terminal
 
 # kill focused window
-bindsym Mod1+Shift+q kill
+bindsym Mod1+q kill
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -104,12 +104,15 @@ bindsym Mod1+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod1+minus scratchpad show
 
+bindsym Mod1+Ctrl+b exec brightness-controller 
 
-set $workspace1 "Home "
-set $workspace2 "Editor "
-set $workspace3 "Browser "
-set $workspace4 "Terminal "
-set $workspace5 "Music "
+
+set $workspace10 "H0me "
+set $workspace1 "F1rst "
+set $workspace4 "Edi4or "
+set $workspace3 "Brows3r "
+set $workspace2 "2erminal "
+set $workspace5 "Mu5ic "
 
 
 # switch to workspace
@@ -122,7 +125,7 @@ bindsym Mod1+6 workspace 6
 bindsym Mod1+7 workspace 7
 bindsym Mod1+8 workspace 8
 bindsym Mod1+9 workspace 9
-bindsym Mod1+0 workspace 10
+bindsym Mod1+0 workspace $workspace10
 
 # move focused container to workspace
 bindsym Mod1+Shift+1 move container to workspace $workspace1
@@ -134,7 +137,7 @@ bindsym Mod1+Shift+6 move container to workspace 6
 bindsym Mod1+Shift+7 move container to workspace 7
 bindsym Mod1+Shift+8 move container to workspace 8
 bindsym Mod1+Shift+9 move container to workspace 9
-bindsym Mod1+Shift+0 move container to workspace 10
+bindsym Mod1+Shift+0 move container to workspace $workspace10
 
 
 # Pulse Audio controls
@@ -193,16 +196,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize grow height 10 px or 10 ppt
-        bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
+        bindsym $left       resize shrink width 4 px or 4 ppt
+        bindsym $down       resize grow height 4 px or 4 ppt
+        bindsym $up         resize shrink height 4 px or 4 ppt
+        bindsym $right      resize grow width 4 px or 4 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
+        bindsym Left        resize shrink width 4 px or 4 ppt
+        bindsym Down        resize grow height 4 px or 4 ppt
+        bindsym Up          resize shrink height 4 px or 4 ppt
+        bindsym Right       resize grow width 4 px or 4 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -239,7 +242,10 @@ client.urgent               $br        $br         $tx
 # i3-gaps
 gaps inner 10
 gaps outer 0
-smart_gaps on
+#smart_gaps on
+
+#toggle gaps on/off
+# bindsym Mod1+shift+s gaps inner current 0; gaps outer current 0
 
 #bindsym Mod1+] gaps inner current plus 5
 #bindsym Mod1+[ gaps inner current minus 5
@@ -255,12 +261,9 @@ smart_gaps on
 for_window [class="^.*"] border pixel 0
 
 bindsym Mod1+shift+o exec i3lock --color 475263
-bindsym Mod1+shift+i exec "$HOME/.i3/scripts/lock.sh $HOME/Pictures/lock.png"
+bindsym Mod1+shift+i exec "$HOME/.i3/locks.sh $HOME/Pictures/lock.png"
 
 exec_always feh --bg-scale ~/Pictures/rocks.jpg
-
-# old bar font
-#font pango:System San Francisco Display 13
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
@@ -286,6 +289,27 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources for some reason.
+set_from_resource $fg i3wm.color1 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+# PROTIP: You can also dynamically set dmenu's colors this way:
+#bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+
+
 # old bar
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -295,7 +319,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 # bar
 bar {
-  	status_command i3blocks -c /home/brian/.i3/i3blocks.conf
+  	position top
+        status_command i3blocks -c /home/brian/.i3/i3blocks.conf
 	colors {
 		background $bg-color
 	    	separator #757575
@@ -312,4 +337,11 @@ exec compton -f
 
 # start dmenu (a program launcher)
 bindsym Mod1+shift+d exec dmenu_run -nb black -sb tomato -l 100 -fn 50
-bindsym Mod1+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+
+bindsym Mod1+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"
+
+# programs shortcuts
+bindsym Mod1+g exec google-chrome-stable
+
+# spotify shortcut
+bindsym Mod1+shift+m exec spotify

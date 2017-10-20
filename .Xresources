@@ -1,8 +1,8 @@
-URxvt.font: xft:monospace:size=16
+! URxvt.font: xft:monospace:size=16
 ! URxvt
 
-urxvt*depth: 32
-urxvt*background: rgba:0000/0000/0200/c800
+! urxvt*depth: 32
+! urxvt*background: rgba:0000/0000/0200/c800
 
 ! General settings
 URxvt.saveLines: 2000
@@ -11,10 +11,8 @@ URxvt.scrollstyle: rxvt
 URxvt.termName: xterm-256color
 URxvt.urgentOnBell: True
 URxvt.cursorBlink: False
-
 ! Extensions
-URxvt.perl-ext-common: 
-default,clipboard,keyboard-select,url-select
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
 URxvt.urlLauncher: xdg-open
 URxvt.urlButton: 1
 URxvt.underlineURLs: True
@@ -72,8 +70,8 @@ URxvt.letterSpace: -1
 
 ! Tango theme
 
-URxvt.background: #1C1C1C
-URxvt.foreground: #DEDEDE
+! URxvt.background: #1C1C1C
+! URxvt.foreground: #DEDEDE
 
 ! black
 URxvt.color0  : #2E3436
@@ -165,3 +163,8 @@ XTerm*color14 : #34E2E2
 ! white
 XTerm*color7  : #D3D7CF
 XTerm*color15 : #EEEEEC
+
+URxvt.transparent:   true
+URxvt.shading:       15
+!urxvt*depth: 		 32
+urxvt*background:    rgba:0020/0200/0200/c800
