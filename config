@@ -387,6 +387,7 @@ exec_always ibus-daemon -rd
 
 # screenshot
 bindsym --release Print exec scrot '%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots' -q 100
+bindsym --release Shift+Print exec scrot '%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots'
 
 #wal - use the last image/color scheme
 exec_always wal -R &
