@@ -1,8 +1,4 @@
-! URxvt.font: xft:monospace:size=16
 ! URxvt
-
-! urxvt*depth: 32
-! urxvt*background: rgba:0000/0000/0200/c800
 
 ! General settings
 URxvt.saveLines: 2000
@@ -11,8 +7,9 @@ URxvt.scrollstyle: rxvt
 URxvt.termName: xterm-256color
 URxvt.urgentOnBell: True
 URxvt.cursorBlink: False
+
 ! Extensions
-URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,font-size
 URxvt.urlLauncher: xdg-open
 URxvt.urlButton: 1
 URxvt.underlineURLs: True
@@ -21,52 +18,22 @@ URxvt.copyCommand:  xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
 
 ! Keybindings
-URxvt.keysym.Mod1-c: perl:clipboard:copy
-URxvt.keysym.Mod1-v: perl:clipboard:paste
-URxvt.keysym.Mod4-C-v: perl:clipboard:paste_escaped
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.C-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.Mod1-c: clipboard:copy
+URxvt.keysym.Mod1-v: clipboard:paste
+URxvt.keysym.Mod4-C-v: clipboard:paste_escaped
+URxvt.keysym.M-c: clipboard:copy
+URxvt.keysym.M-v: clipboard:paste
+URxvt.keysym.M-C-v: clipboard:paste_escaped
+URxvt.keysym.M-Escape: keyboard-select:activate
+URxvt.keysym.C-Escape: keyboard-select:activate
+URxvt.keysym.M-u: url-select:select_next
 
 ! Fonts
-
-!Courier
-!URxvt.font: xft:Courier-10
 
 !Inconsolata
 URxvt.font: xft:Inconsolata-12
 URxvt.boldFont: xft:Inconsolata-12
 URxvt.letterSpace: -1
-
-!Inconsolata-g
-!URxvt.font: xft:InconsolataG-10
-!URxvt.letterSpace: -1
-
-!Anonymous Pro
-!URxvt.font: xft:Anonymous\ Pro-12
-!URxvt.letterSpace: -1
-
-!Monaco
-!URxvt.font: xft:Monaco-10
-!URxvt.letterSpace: -1
-
-!Droid Sans Mono
-!URxvt.font: xft:Droid Sans Mono-10
-!URxvt.letterSpace: -1
-
-!DejaVu Sans
-!URxvt.font: xft:DejaVu Sans Mono-10
-!URxvt.letterSpace: -1
-
-!Manospace
-!URxvt.font: xft:Monospace-10
-!URxvt.letterSpace: -1
-
-!Terminus
-!URxvt.font: xft:Terminus-10
 
 ! Tango theme
 
@@ -166,5 +133,18 @@ XTerm*color15 : #EEEEEC
 
 URxvt.transparent:   true
 URxvt.shading:       15
-!urxvt*depth: 		 32
+urxvt*depth: 		 32
 urxvt*background:    rgba:0020/0200/0200/c800
+
+URxvt.inputMethod: ibus
+URxvt.preeditType: OverTheSpot
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.keysym.C-equal:  font-size:reset
+URxvt.keysym.C-slash:  font-size:show
