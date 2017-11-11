@@ -391,3 +391,6 @@ bindsym --release Shift+Print exec scrot '%Y-%m-%d_%H.%M.%S_$wx$h.png' -e 'mv $f
 
 #wal - use the last image/color scheme
 exec_always wal -R &
+
+#start gnome-settings-daemon
+exec_always /usr/libexec/gnome-settings-daemon
